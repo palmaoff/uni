@@ -9,6 +9,7 @@ int main() {
 
 	cout << "default: ";
 	a.print();
+	b.print();
 
 	cout << "set a: ";
 	cin >> n >> d;

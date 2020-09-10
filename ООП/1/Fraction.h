@@ -2,8 +2,8 @@
 using namespace std;
 
 class Fraction {
-	int n;
-	int d;
+	long int n;
+	short int d;
 	Fraction Norm(Fraction a) {
 		for (int i = 2; i < a.n || i < a.d; i++) {
 			if (a.n % i == 0 && a.d % i == 0) {
@@ -18,16 +18,15 @@ class Fraction {
 		n = 0;
 		d = 1;
 	}
-	int getN() {
-		return (n);
+	Fraction(int n1) {
+		n = n1;
+		d = 1;
 	}
-	int getD() {
-		return (d);
+	Fraction(int n1, int d1) {
+		n = n1;
+		d = d1;
 	}
-	void print() {
-		cout << n << '/' << d << endl;
-	}
-	void set(int n1, int d1) {
+	void set(long int n1, short int d1) {
 		if (d1 < 1) {
 			cout << "incorrect input" << endl;
 			return ;
@@ -40,6 +39,19 @@ class Fraction {
 				d /= i; 
 			}
 		}
+	}
+	Fraction get() {
+		Fraction g;
+
+		g.n = n;
+		g.d = d;
+		return g;
+	}
+	int getN() {
+		return n;
+	}
+	int getD() {
+		return d;
 	}
 	Fraction sum(Fraction a) {
 		Fraction sum;
@@ -63,5 +75,11 @@ class Fraction {
 		if (d == a.d)
 			return (n > a.n);
 		return (n * a.d > a.n * d);
+	}
+	void print() {
+		cout << n << '/' << d << endl;
+	}
+	string toString() {
+		return "aaa";
 	}
 };
