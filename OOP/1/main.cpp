@@ -4,15 +4,20 @@ int main() {
 	Fraction a;
 	Fraction b;
 	Fraction c;
+	int n;
+	size_t d;
 
 	cout << "default: ";
 	a.print();
+	b.print();
 
-	a.set(-12, 5);
-	b.set(1, 2);
 	cout << "set a: ";
+	cin >> n >> d;
+	a.set(n, d);
 	a.print();
 	cout << "set b: ";
+	cin >> n >> d;
+	b.set(n, d);
 	b.print();
 
 	c = a.mult(b);
