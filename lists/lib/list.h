@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
 
-struct List {
+struct Node {
 	float data;
-	List *next;
+	Node *next;
 };
 
-void	list_print(List *a);
+void	list_print(Node *a);
+Node	*node_add_start(float data, Node *head);
+
 /* 
 list_init
 list_print ^
