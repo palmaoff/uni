@@ -1,6 +1,6 @@
 #include "list.h"
 
-Node	*node_add_end(float data, Node *head) {
+void	add_end(Node* &head, float data) {
 	Node *n;
     Node *tmp;
 
@@ -10,5 +10,4 @@ Node	*node_add_end(float data, Node *head) {
     while (tmp->next != NULL)
         tmp = tmp->next;
     tmp->next = n;
-    return head;
 }
