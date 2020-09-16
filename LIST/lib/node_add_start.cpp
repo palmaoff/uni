@@ -1,10 +1,13 @@
 #include "list.h"
 
-Node	*node_add_start(float data, Node *head) {
+void	node_add_start(float data, Node **head) {
 	Node *n;
 
     n = new Node();
     n->data = data;
-    n->next = head;
-    return n;
+    if (head != NULL)
+        n->next = *head;
+    else
+        n->next = NULL;
+    *head = n;
 }

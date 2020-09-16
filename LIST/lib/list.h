@@ -7,13 +7,15 @@ struct Node {
 };
 
 void	list_print(Node *a);
-Node	*node_add_start(float data, Node *head);
+void	node_add_start(float data, Node **head);
+Node	*node_add_end(float data, Node *head);
+void    list_init(Node **head);
 
 /* 
 list_init
-list_print ^
-list_add_start
-list_add_end
+list_print		^
+list_add_start	^
+list_add_end	^
 list_del
 list_count
 list_check_nil
