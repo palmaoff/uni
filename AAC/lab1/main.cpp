@@ -1,32 +1,14 @@
 #include <iostream>
 using namespace std;
 
-int     counter(string a, int c)
-{
-    int count = 0;
-	int i = 0;
-
-    while (a[i] != '\0')
-    {
-        if (a[i] == c)
-            count++;
-        i++;
-    }
-    return (count);
-}
-
-void    rasm(int x, int r, string a, int *d)
-{
+void    rasm(int x, int r, string a, int *d) {
 	int i = 0;
 
     if (x == r)
             cout << a << endl;
-    else
-    {
-        for (int i = 97; i <= 111; i++)
-        {
-            if (d[i - 97] < r - 2)
-            {
+    else {
+        for (int i = 97; i <= 111; i++) {
+            if (d[i - 97] < r - 2) {
                 a[x] = i;
 				d[i - 97]++;
                 rasm(x + 1, r, a, d);
@@ -43,8 +25,7 @@ void	init_rasm() {
 
 	cout << "enter number of letters: ";
 	cin >> n;
-	if (n < 3)
-	{
+	if (n < 3) {
 		cout << "n must be >= 3";
 		return ;
 	}
@@ -55,8 +36,7 @@ void	init_rasm() {
 	delete []d;
 }
 
-int main()
-{
+int main() {
     init_rasm();
     return (0);
 }

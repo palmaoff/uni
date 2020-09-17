@@ -1,6 +1,6 @@
 #include "vec.h"
 
-int main() {
+void vectors() {
 	vec a(4, 3, 2);
 	vec b(1, 2, 3);
 	vec c;
@@ -20,6 +20,12 @@ int main() {
 	a++;
 	cout << "a++: ";
 	a.print();
+}
 
+int main() {
+	Pair a(1, 2);
+	f(a);
+	cout << "-------------" << endl;
+	a.print();
 	return 0;
 }

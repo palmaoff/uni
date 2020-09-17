@@ -1,3 +1,6 @@
+#ifndef VEC_H
+# define VEC_H
+
 #include <iostream>
 using namespace std;
 
@@ -38,5 +41,36 @@ vec::vec(double a, double b, double c):
 	x(a), y(b), z(c) 
 {}
 
-// encapsulation - объединение данных и методов их обработки
-// polymorphism - многообразие видов (перегрузка)
+class Pair {
+	int a, *b;
+	public:
+	void print() {
+		cout << "a: " << a << endl;
+		cout << "b: " << b << endl;
+		cout << "*b: " << *b << endl;
+	}
+	Pair(int A = 0, int B = 0) {
+		a = A;
+		b = new int;
+		*b = B;
+		cout << "constructor" << endl;
+		print();
+	}
+	~Pair() {
+		cout << "distructor" << endl;
+		print();
+		delete [] b;
+	}
+	Pair(const Pair& obj) {
+		cout << "copy_constructor" << endl;
+		a = obj.a;
+		b = new int(*obj.b);
+		print();
+	}
+};
+
+void f(Pair r) {
+	cout << "function" << endl;
+}
+
+#endif

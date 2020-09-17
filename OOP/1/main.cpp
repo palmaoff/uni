@@ -5,10 +5,11 @@ int main() {
 	Fraction b;
 	Fraction c;
 	int n;
-	size_t d;
+	int d;
 
-	cout << "default: ";
+	cout << "default: " << endl << "a: ";
 	a.print();
+	cout << "b: ";
 	b.print();
 
 	cout << "set a: ";
