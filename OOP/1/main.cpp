@@ -32,6 +32,10 @@ int main() {
 	cout << "a - b: ";
 	c.print();
 
-	cout << "a > b: " << a.cmp(b);	
+	cout << "a > b: " << a.cmp(b) << endl;
+
+	string s = a.toString();
+	cout << "a.toString: " << s << endl;
+ 
 	return (0);
 }

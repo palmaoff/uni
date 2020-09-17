@@ -34,10 +34,13 @@ int main() {
 	int n;
 	cout << "Enter n: ";
 	cin >> n;
+	int *m = new int[n];
+	
 	for (int i = 1; i <= n; i++)
 	{
 		if (check(i))
 			cout << i << "\n";
 	}
+	delete [] m;
 	return (0);
 }
