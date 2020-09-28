@@ -21,6 +21,9 @@ int main() {
 	b.set(n, d);
 	b.print();
 
+	cout << "a.getN: " << a.getN() << endl;
+	cout << "b.getN: " << b.getN() << endl;
+
 	c = a.mult(b);
 	cout << "a * b: ";
 	c.print();
@@ -33,10 +36,17 @@ int main() {
 	cout << "a - b: ";
 	c.print();
 
+	c = a.div(b);
+	cout << "a / b: ";
+	c.print();
+
 	cout << "a > b: " << a.cmp(b) << endl;
 
 	string s = a.toString();
 	cout << "a.toString: " << s << endl;
+
+	s = b.toString();
+	cout << "b.toString: " << s << endl;
  
 	return (0);
 }

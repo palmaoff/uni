@@ -15,6 +15,16 @@ int n_len(int n)
 	return (i);
 }
 
+bool is_last(int *m, n) {
+	int i = 0;
+
+	while (i < n) {
+		if (m[i] != 9)
+			return FALSE;
+	}
+	return TRUE;
+}
+
 int check(int n)
 {
 	int s = 0;
@@ -35,12 +45,6 @@ int main() {
 	cout << "Enter n: ";
 	cin >> n;
 	int *m = new int[n];
-	
-	for (int i = 1; i <= n; i++)
-	{
-		if (check(i))
-			cout << i << "\n";
-	}
 	delete [] m;
 	return (0);
 }

@@ -1,5 +1,5 @@
 #ifndef VEC_H
-# define VEC_H
+#define VEC_H
 
 #include <iostream>
 using namespace std;
@@ -61,7 +61,7 @@ class Pair {
 		print();
 		delete [] b;
 	}
-	Pair(const Pair& obj) {
+	Pair(const Pair &obj) {
 		cout << "copy_constructor" << endl;
 		a = obj.a;
 		b = new int(*obj.b);

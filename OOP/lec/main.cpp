@@ -1,4 +1,5 @@
 #include "vec.h"
+#include "lec.h"
 
 void vectors() {
 	vec a(4, 3, 2);
@@ -22,10 +23,16 @@ void vectors() {
 	a.print();
 }
 
-int main() {
+void some_pairs() {
 	Pair a(1, 2);
 	f(a);
 	cout << "-------------" << endl;
 	a.print();
+}
+
+int main() {
+	// vectors();
+	// some_pairs();
+	lec::hello();
 	return 0;
 }

@@ -69,6 +69,18 @@ class Fraction {
 		Norm(m);
 		return m;
 	}
+	Fraction div(Fraction &a) {
+		Fraction div;
+		
+		if (a.n == 0) {
+			cout << "incorrect a for /";
+			return div;
+		}
+		div.d = a.n * d;
+		div.n = a.d * n;
+		Norm(div);
+		return div;
+	}
 	bool cmp(Fraction &a) {
 		if (d == a.d)
 			return (n > a.n);
