@@ -1,6 +1,7 @@
 #include "list.h"
 
-void	add_start(Node* &head, float data) {
+void	add_start(Node* &head, float data)
+{
 	Node *n;
 
     n = new Node();

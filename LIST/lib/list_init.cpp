@@ -1,6 +1,6 @@
 #include "list.h"
 
-void    list_init(Node **head)
+void    list_init(Node* &head)
 {
-    *head = NULL;
+    head = NULL;
 }
