@@ -2,15 +2,15 @@ INC = -I lib/
 
 SRC =	list_init.cpp \
 		list_print.cpp \
-		add_end.cpp \
-		add_start.cpp \
-		add_after.cpp \
-		is_empty.cpp  \
+		list_add_end.cpp \
+		list_add_start.cpp \
+		list_add_after.cpp \
+		list_is_empty.cpp  \
 		list_new_sort.cpp \
 		list_count.cpp \
-		node_del.cpp \
-		add_node.cpp \
-		list_del.cpp
+		list_del.cpp \
+		list_add_node.cpp \
+		list_node_del.cpp
 
 all:
 	g++ main.cpp $(SRC) $(INC)

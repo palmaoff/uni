@@ -10,29 +10,23 @@ struct Node
 	Node *next;
 };
 
-// base
+// base functions
 void    list_init(Node* &head);
 bool	is_empty(Node* head);
 
-// add
+// add functions
 void	add_start(Node* &head, float data);
 void	add_end(Node* &head, float data);
 void    add_after(Node* node, float data);
 void	add_node(Node* &node, float data);
 
-// del
+// delete functions
 void	node_del(Node* &node);
 void	list_del(Node* &node);
 
-// more
+// additional functions
 int		list_count(Node* head);
 void	list_print(Node *a);
 Node*	list_new_sort(Node* l1, Node* l2);
-
-
-/*
-delete_all
-file input && output
-*/
 
 #endif

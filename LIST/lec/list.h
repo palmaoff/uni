@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-struct Node {
+struct Node
+{
 	float data;
 	Node *next;
-}; 
+};
