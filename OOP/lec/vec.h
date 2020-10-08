@@ -4,20 +4,17 @@
 #include <iostream>
 using namespace std;
 
-class vec {
+class vec
+{
 	double x, y, z;
-	public:
-	vec():
-		x(0), y(0), z(0)
-	{}
+
+public:
+	vec() : x(0), y(0), z(0) {}
 	vec(double a, double b, double c);
-	double scalar(vec a) {
-		return (x * a.x + y * a.y + z * a.z);
-	}
-	void print() {
-		cout << x << ' ' << y << ' ' << z << endl;
-	}
-	vec operator+ (vec r) {
+	double scalar(vec a) { return (x * a.x + y * a.y + z * a.z); }
+	void print() { cout << x << ' ' << y << ' ' << z << endl; }
+	vec operator+(vec r)
+	{
 		vec tmp;
 
 		tmp.x = x + r.x;
@@ -25,43 +22,49 @@ class vec {
 		tmp.z = z + r.z;
 		return tmp;
 	}
-	void operator++() {
+	void operator++()
+	{
 		x++;
 		y++;
 		z++;
 	} // a++
-	void operator++(int) {
+	void operator++(int)
+	{
 		++x;
 		++y;
 		++z;
 	} // ++a
 };
 
-vec::vec(double a, double b, double c):
-	x(a), y(b), z(c) 
-{}
+vec::vec(double a, double b, double c) : x(a), y(b), z(c) {}
 
-class Pair {
+class Pair
+{
 	int a, *b;
-	public:
-	void print() {
+
+public:
+	void print()
+	{
 		cout << "a: " << a << endl;
 		cout << "b: " << b << endl;
 		cout << "*b: " << *b << endl;
 	}
-	Pair(int A = 0, int B = 0) {
+	Pair(int A = 0, int B = 0)
+	{
 		a = A;
 		b = new int;
 		*b = B;
 		cout << "constructor" << endl;
 		print();
 	}
-	~Pair() {
+	~Pair()
+	{
 		cout << "distructor" << endl;
 		print();
-		delete [] b;
+		delete[] b;
 	}
-	Pair(const Pair &obj) {
+	Pair(const Pair &obj)
+	{
 		cout << "copy_constructor" << endl;
 		a = obj.a;
 		b = new int(*obj.b);
@@ -69,7 +72,8 @@ class Pair {
 	}
 };
 
-void f(Pair r) {
+void f(Pair r)
+{
 	cout << "function" << endl;
 }
 

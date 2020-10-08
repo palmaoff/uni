@@ -1,5 +1,3 @@
-INC = -I lib/
-
 SRC =	list_init.cpp \
 		list_print.cpp \
 		list_add_end.cpp \
@@ -13,4 +11,7 @@ SRC =	list_init.cpp \
 		list_node_del.cpp
 
 all:
-	g++ main.cpp $(SRC) $(INC)
+	@g++ main.cpp $(SRC)
+
+clean:
+	@del a.exe

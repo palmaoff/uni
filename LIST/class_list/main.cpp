@@ -1,5 +1,6 @@
 #include "list.h"
 #include <string.h>
+#include <fstream>
 
 int		number_of_nodes()
 {
@@ -15,7 +16,7 @@ int		number_of_nodes()
 	return count;
 }
 
-void	list_input(Node *&node, int count)
+void	list_input(list &node, int count)
 {
 	float n;
 
@@ -23,11 +24,11 @@ void	list_input(Node *&node, int count)
 	for (int i = 0; i < count; i++)
 	{
 		cin >> n;
-		add_end(node, n);
+		node.add_end(n);
 	}
 }
 
-void	node_buff(Node* &node, char buff[50])
+void	node_buff(list &node, char buff[50])
 {
 	int i = 0;
 
@@ -35,13 +36,13 @@ void	node_buff(Node* &node, char buff[50])
 	{
 		while (buff[i] == ' ')
 			i++;
-		add_end(node, atoi(&buff[i]));
+		node.add_end(atoi(&buff[i]));
 		while (buff[i] != ' ' && buff[i] != '\0')
 			i++;
 	}
 }
 
-void	lists_from_file(Node *&a, Node *&b)
+void	lists_from_file(list &a, list &b)
 {
 	char c;
 	ifstream fin;
@@ -55,34 +56,13 @@ void	lists_from_file(Node *&a, Node *&b)
 	fin.close();
 }
 
-void	print_in_file(Node* s)
-{
-	ofstream fout;
-
-	fout.open("put_out");
-	while (s != NULL)
-	{
-		fout << s->data;
-		s = s->next;
-		if (s != NULL)
-			fout << "->";
-	}
-	fout << endl;
-	fout.close();
-}
-
 int		main()
 {
-	Node	*a;
-	Node	*b;
-	Node	*s;
+	list	a;
+	list	b;
+	list	s;
 	int		n;
 	char	c;
-
-	// initialization
-	list_init(a);
-	list_init(b);
-	list_init(s);
 
 	// file or console
 	cout << "file (f) or console input (c): ";
@@ -98,24 +78,39 @@ int		main()
 
 	// lists & sort
 	cout << "list 1: ";
-	list_print(a);
+	a.print();
 	cout << "list 2: ";
-	list_print(b);
+	b.print();
 	cout << "1 + 2: ";
-	s = list_new_sort(a, b);
-	list_print(list_new_sort(a, b));
+	s = a.new_sort(b);
+	s.print();
 
 	// save in file
 	cout << "save in file(y, n)? ";
 	while (c != 'y' && c != 'n')
 		cin >> c;
 	if (c == 'y')
-		print_in_file(s);
+		s.print_in_file();
+
+	// a.add_end(110);
+	// a.print();
+	// s = a.new_sort(b);
+	// if (s.is_empty())
+	// 	cout << "list is empty" << endl;
+
+	cout << a.count() << endl;
+	cout << b.count() << endl;
+
+	a.del();
+	s = a.new_sort(b);
+	s.print();
+	cout << a.count() << endl;
+	cout << b.count() << endl;
 
 	// clear memory
-	list_del(a);
-	list_del(b);
-	list_del(s);
+	// a.del();
+	b.del();
+	s.del();
 
 	return (0);
 }
