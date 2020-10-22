@@ -91,9 +91,7 @@ void list::del(Node *&node)
 void list::del()
 {
 	while (head != NULL)
-	{
 		del(head);
-	}
 }
 
 bool list::is_sort()

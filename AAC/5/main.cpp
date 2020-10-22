@@ -18,40 +18,50 @@ void swap(int *a, int *b)
 void print_arr(int *a, int n)
 {
 	for (int i = 0; i < n; i++)
-		cout << a[i];
+		cout << a[i] << " ";
 	cout << endl;
 }
 
-void qs(int *arr, int middle, int first, int last)
+void qs_2_arr(int *a, int *b, int first, int last, int middle = 0)
 {
     if (first < last)
     {
-        int left = first, right = last;
+        int left = first, right = last, base = b[middle];
         while (left <= right)
         {
-            while (arr[left] < middle) left++;
-            while (arr[right] > middle) right--;
+            while (a[left] < base) left++;
+            while (a[right] > base) right--;
             if (left <= right)
             {
-				swap(arr[left], arr[right]);
+				swap(a[left], a[right]);
                 left++;
                 right--;
             }
         }
-        // qs(arr, first, right);
-        // qs(arr, left, last);
+		// cout << left << endl;
+        // qs_2_arr(b, a, first, last, right);
+        // qs_2_arr(a, b, first, right, first);
+        // qs_2_arr(a, b, left, last, left);
     }
-}
-
-void solution(int *a, int *b, int n)
-{
-
 }
 
 int main()
 {
 	int a[10] = {2, 3, 5, 1, 8, 10, 4, 9, 7, 6};
-	int b[10] = {1, 4, 8, 5, 3, 2, 7, 6, 10, 9};
+	int b[10] = {5, 4, 8, 1, 3, 2, 7, 6, 10, 9};
 
-	solution(a, b, 10);
+	// print init arrays
+	print_arr(a, 10);
+	print_arr(b, 10);
+	cout << endl;
+
+	// doing sort
+	qs_2_arr(a, b, 0, 9);
+	// qs_2_arr(b, a, 0, 9, 0);
+
+	// print result
+	print_arr(a, 10);
+	print_arr(b, 10);
+
+	return 0;
 }
