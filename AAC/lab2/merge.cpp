@@ -1,52 +1,46 @@
 #include "merge.h"
 
-void copy_arr(int *a1, int *a2, int i)
+void	Merge(int *A, int *B, int *&res, int a, int b)
 {
-	int j = 0;
+	int start, final, i;
 
-	while (a1[j] != 0)
-		j++;
-	for (int k = 0; k < i; k++)
-	{
-		a1[j] = a2[k];
-		j++;
-	}
+	start = 0;
+	final = 0;
+	int arr[100];
+
+	for (i = 0; i < a + b; i++)
+		if ((start < a) && ((A[start] < B[final]) || (final >= b)))
+		{
+			arr[i] = A[start];
+			start++;
+		}
+		else if (final < b)
+		{
+			arr[i] = B[final];
+			final++;
+		}
+	for (i = 0; i < a + b; i++)
+		res[i] = arr[i];
 }
 
-void	merge_arrs(int *m1, int *m2, int n)
+int		*merge_all(int **arr, int n, int start, int end)
 {
-	int i = 0, j = 0, k = 0;
-	int arr[n * n];
-	while (i < n || j < n)
-	{
-		if (m1[i] < m2[j])
-		{
-			arr[k] = m1[i];
-			i++;
-		}
-		else
-		{
-			arr[k] = m2[j];
-			j++;
-		}
-		k++;
-	}
-	while (i < n)
-	{
-		arr[k] = m1[i];
-		k++;
-		i++;
-	}
-	while (j < n)
-	{
-		arr[k] = m2[j];
-		k++;
-		j++;
-	}
-	// copy_arr(arr, n * n);
-}
+	int *result = new int[n * (end - start + 1)];
+	int *m1, *m2;
 
-void	merge(int **arr, int *arr_new, int i, int j)
-{
-	return ;
+	if (end - start > 1)
+	{
+		m1 = merge_all(arr, n, start, (end - start) / 2);
+		m2 = merge_all(arr, n, (end - start) / 2 + 1, end);
+		Merge(m1, m2, result, n * ((end - start) / 2 - start + 1),
+			n * (end - ((end - start) / 2 + 1) + 1));
+		delete [] m1;
+		delete [] m2;
+	}
+	else if (end - start == 0)
+		for (int i = 0; i < n; i++)
+			result[i] = arr[start][i];
+	else if (end - start == 1)
+		Merge(arr[start], arr[end], result, n, n);
+	return result;
 }

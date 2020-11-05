@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 
-void	merge(int **arr, int *arr_new, int i, int j);
+int		*merge_all(int **arr, int n, int start, int end);
+void	print_arr(int *a, int count);
 
 #endif
