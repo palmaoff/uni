@@ -2,32 +2,42 @@
 #include <string.h>
 using namespace std;
 
-struct t_vec
-{
-    double x;
-    double y;
-    double z;
-};
-
 class Tube
 {
     double d;
     double U;
-    t_vec B;
-    t_vec V;
-    void speed()
-    {
-    }
-    t_vec vec_init()
-    {
-        t_vec v;
+    double B;
+    double V;
 
-        v.x = 0;
-        v.y = 0;
-        v.z = 0;
-        return v;
-    }
+    void	tube_input();
+    void    speed();
 
 public:
+
+    // constructor
     Tube();
+    Tube(double d, double U, double B);
+
+    // distructor
+    ~Tube();
+
+    // get
+    double  getD();
+    double  getU();
+    double  getB();
+    double  getV();
+
+    // set
+    void    set();
+    void    setD(double d);
+    void    setU(double U);
+    void    setB(double B);
+
+    // toString
+    string  toString();
+
+    // print
+    void    print();
 };
+
+void tube_loop();
