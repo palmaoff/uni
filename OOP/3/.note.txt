@@ -1,0 +1,11 @@
+player:
+	pos
+sleeper:
+	pos
+	earth
+	male
+carrot:
+	pos
+field:
+	carrot
+	downMove

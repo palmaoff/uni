@@ -19,7 +19,7 @@ void	heap_rebuild(int *buff, int i, int size)
 	{
 		swap(buff[i], buff[2 * i]);
 		heap_rebuild(buff, 2 * i + 1, size);
-	}	
+	}
 }
 
 int main()

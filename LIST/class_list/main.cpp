@@ -92,12 +92,6 @@ int		main()
 	if (c == 'y')
 		s.print_in_file();
 
-	// a.add_end(110);
-	// a.print();
-	// s = a.new_sort(b);
-	// if (s.is_empty())
-	// 	cout << "list is empty" << endl;
-
 	cout << a.count() << endl;
 	cout << b.count() << endl;
 
