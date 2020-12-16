@@ -1,0 +1,19 @@
+6
+moscow
+dubai
+12 2 2020
+new york
+voronezh
+1 1 2020
+new york
+voronezh
+12 5 2019
+new york
+voronezh
+18 2 2020
+new york
+voronezh
+12 3 2020
+new york
+voronezh
+1 1 2020

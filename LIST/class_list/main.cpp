@@ -44,7 +44,6 @@ void	node_buff(list &node, char buff[50])
 
 void	lists_from_file(list &a, list &b)
 {
-	char c;
 	ifstream fin;
 	char buff[50];
 
@@ -68,11 +67,13 @@ int		main()
 	cout << "file (f) or console input (c): ";
 	while (c != 'c' && c != 'f')
 		cin >> c;
+	// console
 	if (c == 'c')
 	{
 		list_input(a, number_of_nodes());
 		list_input(b, number_of_nodes());
 	}
+	// file
 	if (c == 'f')
 		lists_from_file(a, b);
 
