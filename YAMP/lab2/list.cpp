@@ -1,6 +1,6 @@
 #include "flight.h"
 
-static void	ft_strcpy(string to, char* from)
+static void ft_strcpy(string to, char *from)
 {
 	int i = 0;
 
@@ -21,7 +21,7 @@ bool list::is_empty()
 	return head == NULL;
 }
 
-Node* list::add_front(int data)
+Node *list::add_front(int data)
 {
 	Node *n;
 
@@ -39,7 +39,7 @@ Node* list::add_front(int data)
 	return n;
 }
 
-Node* list::add_back(int data)
+Node *list::add_back(int data)
 {
 	Node *n;
 	Node *tmp;
@@ -114,25 +114,12 @@ void list::del_back()
 	}
 }
 
-int list::count()
-{
-	Node *tmp = head;
-	int i = 0;
-
-	while (tmp != NULL)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	return i;
-}
-
 void list::print()
 {
 	Node *a = head;
 
 	if (a == NULL)
-		cout << "empty";
+		cout << "empty\n";
 	while (a != NULL)
 	{
 		cout << "id: " << a->id << endl;
@@ -144,12 +131,14 @@ void list::print()
 void list::print(Date d)
 {
 	Node *a = head;
+	Date date;
 
 	if (a == NULL)
 		cout << "empty";
 	while (a != NULL)
 	{
-		if (!a->f.isLater(d))
+		date = a->f.getArrive();
+		if (!date.isLater(d))
 		{
 			cout << "id: " << a->id << endl;
 			cout << a->f.toString() << endl;
@@ -166,7 +155,7 @@ void list::print(int d)
 	if (a == NULL)
 	{
 		cout << "no one\n";
-		return ;
+		return;
 	}
 	cout << "id: " << a->id << endl;
 	cout << a->f.toString() << endl;
@@ -181,7 +170,7 @@ void list::print_in_file(string file)
 	while (s != NULL)
 	{
 		cout << "id: " << s->id << endl;
-			cout << s->f.toString() << endl;
+		cout << s->f.toString() << endl;
 		s = s->next;
 	}
 	fout << endl;
@@ -190,18 +179,17 @@ void list::print_in_file(string file)
 
 int list::read_from_file(string file)
 {
-	ifstream	fin;
-	char		buff[50];
-	int			n;
-	int			i = 0;
-	Node*		curr;
+	ifstream fin;
+	char buff[50];
+	Node *curr;
+	int n;
 
 	// open file & getting line
 	fin.open(file);
 	fin.getline(buff, 50);
 
 	// getting number of flights
-	n = atoi(&buff[i]);
+	n = atoi(buff);
 
 	// parsing data
 	for (int k = 0; k < n; k++)
@@ -216,37 +204,20 @@ int list::read_from_file(string file)
 		fin.getline(buff, 50);
 		curr->f.setTo(buff);
 
-		// date
-		i = 0;
+		// date leave
 		fin.getline(buff, 50);
-
-		// day
-		if (!curr->f.setD(atoi(&buff[i])))
+		if (!curr->f.setLeave(buff))
 		{
-			cout << k << ": day: " << atoi(&buff[i]) << endl;
-			return 0;
+			del(curr);
+			curr = NULL;
 		}
-		while (buff[i] != ' ' && buff[i] != '\0')
-			i++;
-		while (buff[i] == ' ')
-			i++;
 
-		// month
-		if (!curr->f.setM(atoi(&buff[i])))
+		// date arrive
+		fin.getline(buff, 50);
+		if (curr != NULL && !curr->f.setArrive(buff))
 		{
-			cout << "month: " << atoi(&buff[i]) << endl;
-			return 0;
-		}
-		while (buff[i] != ' ' && buff[i] != '\0')
-			i++;
-		while (buff[i] == ' ')
-			i++;
-
-		// year
-		if (!curr->f.setY(atoi(&buff[i])))
-		{
-			cout << "year: " << atoi(&buff[i]) << endl;
-			return 0;
+			del(curr);
+			curr = NULL;
 		}
 	}
 
@@ -264,7 +235,7 @@ void list::swap_nodes(Node *&a, Node *&b)
 	b = tmp;
 }
 
-void list::near_swap(Node* n1, Node* n2)
+void list::near_swap(Node *n1, Node *n2)
 {
 	n2->prev = n1->prev;
 	n1->prev = n2;
@@ -276,7 +247,7 @@ void list::near_swap(Node* n1, Node* n2)
 		n1->next->prev = n1;
 }
 
-void list::swap(Node* n1, Node* n2)
+void list::swap(Node *n1, Node *n2)
 {
 	if (n1 != NULL && n2 != NULL)
 	{
@@ -307,11 +278,11 @@ void list::swap(Node* n1, Node* n2)
 	}
 }
 
-Node* list::find(int i)
+Node *list::find(int i)
 {
-	Node* curr = head;
+	Node *curr = head;
 
-	while (curr->next != NULL)
+	while (curr != NULL)
 	{
 		if (curr->id == i)
 			return curr;
@@ -320,17 +291,19 @@ Node* list::find(int i)
 	return NULL;
 }
 
-void	list::sort_date()
+void list::sort_date()
 {
-	Node* l1 = head;
-	Node* l2 = head;
+	Node *l1 = head;
+	Node *l2 = head;
+	Date date;
 
-	while (l1->next != NULL)
+	while (l1 != NULL && l1->next != NULL)
 	{
 		l2 = l1->next;
 		while (l2 != NULL)
 		{
-			if (!l1->f.isLater(l2->f))
+			date = l1->f.getArrive();
+			if (!date.isLater(l2->f.getArrive()))
 			{
 				swap(l1, l2);
 				swap_nodes(l1, l2);
@@ -341,7 +314,97 @@ void	list::sort_date()
 	}
 }
 
-void	list::test()
+int list::count()
 {
-	
+	Node *tmp = head;
+	int i = 0;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return i;
+}
+
+int list::countFrom(string str)
+{
+	Node *a = head;
+	string from;
+	int i = 0;
+
+	while (a != NULL)
+	{
+		from = a->f.getFrom();
+		if (from == str)
+			i++;
+		a = a->next;
+	}
+	return i;
+}
+
+int list::countTo(string str)
+{
+	Node *a = head;
+	string to;
+	int i = 0;
+
+	while (a != NULL)
+	{
+		to = a->f.getTo();
+		if (to == str)
+			i++;
+		a = a->next;
+	}
+	return i;
+}
+
+void list::test()
+{
+	del();
+}
+
+bool list::edit(int id)
+{
+	string str;
+	int n;
+	char buff[50];
+	Date d;
+	Node* node = find(id);
+
+	if (node == NULL)
+		return 0;
+	cin >> str;
+	node->f.setFrom(str.c_str());
+	cin >> str;
+	node->f.setTo(str.c_str());
+	cin >> n;
+	d.setD(n);
+	cin >> n;
+	d.setM(n);
+	cin >> n;
+	d.setY(n);
+	node->f.setArrive(d);
+
+	cin >> n;
+	d.setD(n);
+	cin >> n;
+	d.setM(n);
+	cin >> n;
+	d.setY(n);
+	node->f.setLeave(d);
+
+	return 1;
+}
+
+void Flight::setLeave(Date d)
+{
+	if (d.checkDate())
+		leave.setDate(d);
+}
+
+void Flight::setArrive(Date d)
+{
+	if (d.checkDate())
+		arrive.setDate(d);
 }

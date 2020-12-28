@@ -17,19 +17,25 @@ public:
 	int		getD();
 	int		getM();
 	int		getY();
-	int		setD(int d);
-	int		setM(int m);
-	int		setY(int y);
+	void	setD(int d);
+	void	setM(int m);
+	void	setY(int y);
+	void	setDate(Date d); 
 	bool	isLater(Date d);
 	bool	isEqual(Date d);
-	void	read();
+	bool	checkDate();
+	int		read(const char *buff);
+	int		read();
 	string	toString();
 };
 
-class Flight: public Date
+class Flight
 {
 	string	to;
 	string	from;
+	Date	leave;
+	Date	arrive;
+
 public:
 	Flight();
 	string	getTo();
@@ -37,6 +43,12 @@ public:
 	string	toString();
 	void	setTo(string t);
 	void	setFrom(string f);
+	int		setArrive(const char *buff);
+	int		setLeave(const char *buff);
+	void	setArrive(Date d);
+	void	setLeave(Date d);
+	Date	getArrive();
+	Date	getLeave();
 };
 
 struct Node
@@ -74,6 +86,8 @@ public:
 
 	// additional functions
 	int		count();
+	int		countFrom(string str);
+	int		countTo(string str);
 	void 	print();
 	void 	print(Date d);
 	void 	print(int d);
@@ -82,6 +96,10 @@ public:
 	Node*	find(int i);
 	void	sort_date();
 	void	test();
+	bool	edit(int id);
 };
+
+int		nextCharacter(const char *buff, int i);
+bool	isLeap(int y);
 
 #endif

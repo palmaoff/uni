@@ -12,22 +12,21 @@ int main()
 		cout << "input file error" << endl;
 		return 0;
 	}
-	l.print();
-	// l.test();
-	l.sort_date();
-	cout << "sorted:" << endl << endl;
-	l.print();
 
 	while (str != "q")
 	{
-		cout << "q(quit) d(date) i(id)\n";
+		cout << "q(quit) d(date) i(id) s(sorted) t(test)\n";
 		cin >> str;
 		if (str == "d")
 		{
 			cout << "date:";
 			d.read();
 			cout << endl;
-			l.print(d);
+			if (d.checkDate())
+				l.print(d);
+			else
+				cout << "incorrect date\n";
+			
 		}
 		if (str == "i")
 		{
@@ -35,7 +34,29 @@ int main()
 			cout << endl;
 			l.print(n);
 		}
+		if (str == "s")
+		{
+			l.sort_date();
+			cout << "sorted:" << endl << endl;
+			l.print();
+		}
+		if (str == "t")
+			l.test();
+		if (str == "p")
+			l.print();
+		if (str == "r")
+			l.del();
+		if (str == "a")
+		{
+			cin >> n;
+			l.add_front(n);
+		}
+		if (str == "e")
+		{
+			cin >> n;
+			if (!l.edit(n))
+				cout << "there is no such flight";
+		}
 	}
-
 	return 0;
 }

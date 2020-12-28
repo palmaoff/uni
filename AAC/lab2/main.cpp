@@ -1,7 +1,8 @@
+/*
+	Объединить n отсортированных массивов в новый отсортированный массив.
+*/
+
 #include "merge.h"
-#include <shlobj.h>
-#include <shlwapi.h>
-#include <objbase.h>
 
 void	print_arr(int *a, int count)
 {
