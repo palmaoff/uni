@@ -167,7 +167,7 @@ bool	Tree::del(int data)
 		if (curr == curr->p->l)
 			curr->p->l = NULL;
         else if (curr == curr->p->r)
-			curr->p->r == NULL;
+			curr->p->r = NULL;
 		delete curr;
 		curr = NULL;
 		return 1;

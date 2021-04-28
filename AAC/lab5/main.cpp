@@ -36,17 +36,25 @@ void qs(int *s_arr, int first, int last)
 int minSum(int *arr, int n)
 {
 	int sum;
-	int r1;
-	int r2;
+	int* brr;
 
-	sum = arr[1] - arr[0];
-	for (int i = 3; i < n - 2; i++)
+	brr = new int[n];
+	if (n < 2)
+		return 0;
+	brr[n - 1] = 10000;
+	brr[n - 2] = arr[n - 1] - arr[n - 2];
+	for (int i = n - 3; i >= 0; i--)
 	{
-		r1 = arr[i] - arr[i - 1];
-		r2 = arr[i + 1] - arr[i];
-		sum += (r1 > r2) ? r2 : r1;
+		brr[i] = (brr[i + 1] > brr[i + 2]) ? brr[i + 2] : brr[i + 1];
+		brr[i] += arr[i + 1] - arr[i];
 	}
-	sum += arr[n - 1] - arr[n - 2];
+
+	for (int i = 0; i < n; i++)
+		cout << brr[i] << " ";
+	cout << endl;
+
+	sum = brr[0];
+	delete [] brr;
 	return sum;
 }
 
@@ -56,19 +64,26 @@ int main()
 	int n;
 	int *arr;
 
+	// open & read
 	fin.open("in.txt");
 	fin >> n;
 	arr = new int[n];
 	for (int i = 0; i < n; i++)
 		fin >> arr[i];
+
+	// sort
 	qs(arr, 0 , n - 1);
 
+	// print
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
 	cout << endl;
 
+	// sum
 	cout << minSum(arr, n) << endl;
-	
+
+	// clean memory	
 	delete [] arr;
+
 	return 0;
 }

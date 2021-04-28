@@ -15,7 +15,7 @@ int main()
 
 	while (str != "q")
 	{
-		cout << "q(quit) d(date) i(id) s(sorted) t(test)\n";
+		cout << "q(quit) d(date) i(id) s(sorted) t(test) e(edit) r(remove all)\n";
 		cin >> str;
 		if (str == "d")
 		{
