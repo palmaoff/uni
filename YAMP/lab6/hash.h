@@ -22,7 +22,6 @@ public:
 	size_t Count(string str);
 	void Del(string str);
 	void Read(string file);
-	// void Clear();
 };
 
 #endif
